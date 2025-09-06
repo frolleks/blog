@@ -6,6 +6,7 @@ interface Post {
   slug: string;
   title: string;
   canonical: string;
+  date: string;
 }
 
 export default async function PostList() {
@@ -23,15 +24,16 @@ export default async function PostList() {
       const content = fs.readFileSync(filePath, "utf-8");
       // Extract metadata
       const metadataMatch = content.match(
-        /export const metadata = ({[^}]*});/s
+        /export const metadata = ({[\s\S]*?});/
       );
       if (metadataMatch) {
-        const metadataStr = `{${metadataMatch[1]}}`;
+        const metadataStr = metadataMatch[1];
         const metadata = new Function(`return ${metadataStr}`)();
         posts.push({
           slug: num,
           title: metadata.title,
           canonical: metadata.alternates.canonical,
+          date: metadata.date || "1970-01-01",
         });
       }
     }
@@ -44,9 +46,9 @@ export default async function PostList() {
           <li key={post.slug}>
             <Link
               href={post.canonical}
-              className="text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300"
+              className="text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800"
             >
-              {post.title}
+              {post.title}, {post.date}
             </Link>
           </li>
         ))}

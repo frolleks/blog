@@ -1,7 +1,6 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { highlight } from "sugar-high";
-import PostList from "./components/PostList";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -105,7 +104,6 @@ const components = {
       </tbody>
     </table>
   ),
-  PostList: PostList,
   blockquote: (props: BlockquoteProps) => (
     <blockquote
       className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
