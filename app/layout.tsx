@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "John Smith",
-    template: "%s | John Smith",
+    default: "frolleks",
+    template: "%s | frolleks",
   },
-  description: "My portfolio, blog, and personal website.",
+  description: "My personal blog where I write out my thoughts.",
 };
 
 export default function RootLayout({
